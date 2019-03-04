@@ -26,7 +26,8 @@ Automatically convert smart contract into digital capsule
 
 # Experiment Setup
 ## Whole picture
-!(md/imgs/img001.svg)
+![whole picture](/md/imgs/img001.svg)
+
 ### P2P Network of Trusted Raspberry Pi with TPM
 
 ### RPI with TPM as trusted node. 
