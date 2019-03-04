@@ -18,11 +18,12 @@ Zymbit on Raspberry Pi as TPM, build a P2P network. use Pi as PXE to boot PC as 
 * The computer who do execution need to have a Ethernet RJ 45 port and BIOS supports LAN boot from a PXE server
 * As long as the malicious node would like to wait enough time and accept the lost of historical reputation built up over a long period of time and the deposit, it actually can stop execution and take the machine offline while steal the private data already decrypted in memory or hard drive. Like other blockchain project, we cannot prevent malicious activities happen, we can raise the cost of attack to stop.
 * We use Zymbit Raspberry Pi TPM module as our hardware root of trust. If that module is not trustable, our experiment won’t be trustable either.
+* We have not set gas limit yet. If there is a dead loop, it will dead until we force it quit. We can have a quick and dirty temp solution, that is to set a timeout. 
 
 # Planned Future Experiments
-Complete the reputation system on blockchain
-As long as the node execution is trustable, we can design a new consensus to replace existing POW or POS. Such as PoET or any other consensus based on TEE
-Automatically convert smart contract into digital capsule
+* Complete the reputation system on blockchain
+* As long as the node execution is trustable, we can design a new consensus to replace existing POW or POS. Such as PoET or any other consensus based on TEE
+* Automatically convert smart contract into digital capsule
 
 # Experiment Setup
 ## Whole picture
