@@ -33,13 +33,13 @@ Automatically convert smart contract into digital capsule
 ### RPI with TPM as trusted node. 
 
 They connected together as a P2P network. Ideal Chord DHT connection.
-
+![Rpi with TPM](https://zymbit.com/wp-content/uploads/2019/01/ZK-II-I2C-fitted-to-RPI-inside-case-landscape.gif)
 RPI cannot run complicated computation. We use them as Trust Root of HPC. The actual computation (if complicated enough) will be done by the HPC.
 
 HPC (High Performance Computer) will not connect to any other network directly but connect solely to the RPI with TPM. 
 
 The RPI is the HPC’s network gateway and  PXE boot server. Detail in in the diagram below
-
+![relationship between rpi and hpc](/md/imgs/img002.svg)
 ### HPC (High Performance Computer) is the one actually execute computation tasks. 
 * HPC is trapped in a isolated environment. HPC cannot have any kind of physical or logical communication with outside world
 * HPC’s only network connection is the RPI
@@ -47,11 +47,11 @@ The RPI is the HPC’s network gateway and  PXE boot server. Detail in in the di
 * HPC will boot from RPI which is working as PXE server. RPI will store the HPC’s boot OS image and server to HPC when booting.
 * After HPC boot, HPC’s remote attestation agent will auto start and talk to RPI’s remote attestation server. Answer question from the RPI honestly.
 * HPC will receive RPI’s request of execution digital capsule. Any communication will go through RPI. Any unexpected trial to connect outside internet will be log and banned by RPI.
-
+![relationship between rpi and hpc](/md/imgs/img003.svg)
 
 RPI (Raspberry Pi) with Zymbit TPM as Root of Trust for the HPC. But inside the RPI, the Zymbit TPM is the root of trust for RPI. 
 ## Chain of trust
-
+![chain of trust](/md/imgs/img004.svg)
 We can see the Zymbit TPM is the root of trust for everything. It is a hardware TPM chips plugin to RPI’s GPIO ports. 
 
 Zymbit TPM has a lot of security features for detail please go to https://www.zymbit.com/zymkey/
@@ -61,7 +61,7 @@ We will use the hardware TPM as the root of trust for RPI. RPI’s boot disk wil
 The boot image is supposed not to have a lot of changes. All changes will be on the docker images. All the services are not directly loaded from boot image, but from docker images.
 
 ## Storage area inside RPI
-
+![storage area on RPI](/md/imgs/img005.svg)
 There are two major storage area inside the RPI SD card. 
 The encrypted part is the boot OS image. It include everything required for docker to start those services. 
 
@@ -70,6 +70,9 @@ The plain part is the different services will be load to docker container and ru
 All the images will be downloaded from trusted P2P network source, and the hash will be checked by “Verification module” which stay inside the encrypted part. 
 
 So inside the RPI, the Trust Chain looks like
+
+![trust chain inside](/md/imgs/img006.svg)
+
 So the hardware is the root of trust, and the relationship between each module in the trust chain.
 
 ## RPI Secure Boot
@@ -100,6 +103,7 @@ Agent runs in system root level of OS on HPC
 Agent only communicate with RPI where HPC boot from. Use encryption and automatically change keys.
 
 Based on the Remote Attestation Server required, the agent will get all kind of system information to the server. Including memory hash, hard drive hash. So called hardware fingerprint
+![relationship between remote attestation agent, server and consensus services](/md/imgs/img007.svg)
 
 ## Task 5. RPI remote attestation server
 Server runs on RPI. It will talk to the connected HPC’s agent. Monitor the HPC’s running stats. The monitoring process is constant, frequent and unpredicted. 
