@@ -30,6 +30,8 @@ Docker engine and Checking and verifying those images are done by the code insid
 
 Once those images are loaded, this RPI starts to server as a node in P2P network. 
 
+# Digital capsule demo process
+
 ## Create digital capsule 
 
 - User has a chuck of data need to put into digital capsule -> the data, or payload
@@ -88,6 +90,6 @@ This transaction will be used to pay the reward, or, in case of marlicious behev
 
 If the executor doing well, it will gain reputation. This reputation value will be accuminated to gain higher chance to be selected by VRF in the future.
 
+# alternative solution and improvement
 
-
-
+Digital capsule warpper to call smart contract will take pretty long time. if the wrapper code can directly contract the owner's RPI (P2P with encrypted messaging), it can ask the owner's RPI to check the executor's reputation, so that it can be done in one block time.
