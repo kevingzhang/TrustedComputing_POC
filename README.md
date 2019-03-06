@@ -91,6 +91,22 @@ The reputation system in layer-1 blockchain can set different level based on har
 
 Hardware fingerprint is a big topic, we won't dive too deep in this document
 
+## Benefit of not having TPM in HPC
+
+### Not all digital capsule need HPC, most of them can be done inside RPI
+
+Yes, the more and more will be in the future. If we design correctly, at least most of the smart contract doesn't need intensive computation. They can be execute in a light weighted docker container supported by RPI. We do not need HPC in this case at all.
+
+### HPC without TPM can be general available to general public. Keep our blockchain permissionless
+
+There is always trade off between permissionless and security. If every machine need TPM of course will gain on security, but limits who can join the computation network. 
+
+Software or no TPM is much easier, but of course, lack of hardware supported security. What we are going to do is to use blockchain to patch on those security we lost. 
+
+Simple consensus and reputation system , especially VRF can cover many of the security losses. When the consensus is running between trusted RPI, the speed is much faster than traditional blockchain. So we do not lose scalability either.
+
+
+
 ## Storage area inside RPI
 ![storage area on RPI](/md/imgs/img005.svg)
 There are two major storage area inside the RPI SD card. 
