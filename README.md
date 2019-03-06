@@ -61,6 +61,36 @@ We will use the hardware TPM as the root of trust for RPI. RPI’s boot disk wil
 
 The boot image is supposed not to have a lot of changes. All changes will be on the docker images. All the services are not directly loaded from boot image, but from docker images.
 
+## How to reduce the risk without HPC's TPM
+You can see we simplified the HPC's requirement, we do not have a TPM installed on the HPC. We only have a TPM equiped RPI connect to HPC via network. This is a huge security risk since network attestation is far less secure than embedded TPM directly plant on bare metal.
+
+We use the follow solution to reduece the risk
+### The HPC boot from RPI
+
+RPI control the boot OS image, there is no way for HPC to load malicious software through the secured boot
+
+### VRF random selected executor cause the side channel attacker to wait for unexpectations
+
+Side channel attack is very hard to detect and prevent. We do not try to deal with it, but we create as much uncertainty as possible to the attacker. Since no one know what digital capsule will be executed in this particular node, and how much the value is supposed to be. The execution time is very short. If the attack is waiting for a valuable digital capsule to attack, he will need to pay a lot time cost. 
+
+If the exeuction is only few ms, it would be hard for the attacker to get useful information leaks. There is no way to predict and very low chance when the same digital capsule will come to this node again.
+
+Once the side attack (although hard) to be detected. The node will lost all its reputation for a very long time and deposit. It will be a rather long time to rebuild the reputation from ground up. the time cost is huge for attackers.
+
+VRF will not announce which node is going to execute which digltal capsule before it is completed. So if any attacker want to make a remote attack, he cannot find the high value target.
+
+### Some hardware fingerprint can be got from pure software
+
+Not all kind of hardware fingerprint need direct hardware access. One example is described in "Run-Time Accessible DRAM PUFs in Commodity Devices" -  https://www.youtube.com/watch?v=PmDhe3Na7LQ
+
+We can use Attestation Agent to generate some of those hardware fingerprint when hardware shipped from manufacturer. This fingerprint (most likely in merkle tree format) will be stored in blockchain with public key. This finger print can be validate later. If the fingerprint not matching in the future, it most likely caused by hardware attack.
+
+### In the future, we also consider additional hardware TPM on HPC's bare metal
+
+The reputation system in layer-1 blockchain can set different level based on hardware security level. The bare metal with TPM will have higher level by default.
+
+Hardware fingerprint is a big topic, we won't dive too deep in this document
+
 ## Storage area inside RPI
 ![storage area on RPI](/md/imgs/img005.svg)
 There are two major storage area inside the RPI SD card. 
