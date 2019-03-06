@@ -11,6 +11,8 @@ Zymbit on Raspberry Pi as TPM, build a P2P network. use Pi as PXE to boot PC as 
 * After the execution completed Node X will return the whole system stat to the original stat before execution. If there is any temp files or data in any storage, they will be cleanly removed (non recoverable). The RAM need to be clean as well. All above clean up can be verified and guaranteed. 
 * All permanent storage will be on blockchain. But only the remote attestation record, nothing related to the execution task or data.
 
+Link to [Digital Capsule](md/DigitalCapsule.md)
+
 # Experiment Limitations
 * We do not guarantee the execution result is correct. We do not know , do not care, do not monitor any mistakes in the execution code. We just make sure the Node X is running exactly the code Node A defined. 
 * The execution tasks are ideally batch task which have limited execution time. Long running web services are not good for this kind of execution environment. 
