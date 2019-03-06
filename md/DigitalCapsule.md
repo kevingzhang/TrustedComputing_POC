@@ -30,7 +30,7 @@ Docker engine and Checking and verifying those images are done by the code insid
 
 Once those images are loaded, this RPI starts to server as a node in P2P network. 
 
-# Digital capsule demo process
+# Digital capsule demo process - Data Capsule
 
 ## Create digital capsule 
 
@@ -93,3 +93,13 @@ If the executor doing well, it will gain reputation. This reputation value will 
 # alternative solution and improvement
 
 Digital capsule warpper to call smart contract will take pretty long time. if the wrapper code can directly contract the owner's RPI (P2P with encrypted messaging), it can ask the owner's RPI to check the executor's reputation, so that it can be done in one block time.
+
+# Digital capsule demo process - Docker Capsule
+
+Docker capsule is different than Data Capsule. Docker images itself is a docker image. All the files which needs protection will be encrypted using an AES key which is not inside the image. So it is OK to share to store in public spaces.
+
+When the docker images are loaded into executor, the RUN command will start the plain code, just like the wrapper code in Data Capsule. The plain code will do the same as previous mentioned wrapper code to get AES key from the blockchain using smart contract. 
+
+The pros of Docker Capsule is 
+* All in one image. Self contained
+* 
