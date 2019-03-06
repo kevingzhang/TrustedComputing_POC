@@ -26,7 +26,7 @@ Link to [Digital Capsule](md/DigitalCapsule.md)
 * Complete the reputation system on blockchain
 * As long as the node execution is trustable, we can design a new consensus to replace existing POW or POS. Such as PoET or any other consensus based on TEE
 * Automatically convert smart contract into digital capsule
-
+* new [CQRS](md/Bridge_to_traditional_cloud_app_developer_CQRS_model.md) model for traditional cloud app developers.
 # Experiment Setup
 ## Whole picture
 ![whole picture](/md/imgs/img001.svg)
