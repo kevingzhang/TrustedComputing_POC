@@ -101,5 +101,11 @@ Docker capsule is different than Data Capsule. Docker images itself is a docker 
 When the docker images are loaded into executor, the RUN command will start the plain code, just like the wrapper code in Data Capsule. The plain code will do the same as previous mentioned wrapper code to get AES key from the blockchain using smart contract. 
 
 The pros of Docker Capsule is 
-* All in one image. Self contained
-* 
+* All in one image. Self contained, Portable, less dependents on running environment
+* can be run on any executor without prerequisites
+The cons:
+* Large size, cause large network traffic
+* Update take more cost (need to rebuild image and upload)
+
+# Kraken, an Open Source Peer-to-Peer Docker Registry
+Kraken (see [github](https://github.com/uber/kraken)) is an open source, peer-to-peer (P2P) Docker registry.
