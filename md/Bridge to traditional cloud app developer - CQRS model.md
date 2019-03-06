@@ -5,7 +5,7 @@ CQRS, which means Command Query Responsibility Segregation, comes from CQS (Comm
 The difference between CQS and CQRS is that every CQRS object is divided in two objects: one for the query and one for the command.
 
 A command is defined as a method that changes state. On the contrary, a query only returns a value.
-
+![diagram](https://cdn-images-1.medium.com/max/800/0*BCNT4rhyijg2yhuK.png)
 The following schema shows a basic implementation of the CQRS pattern inside an application. All messages are sent through commands and events. Let’s take a closer look at this.
 
 Read more [here](https://medium.com/eleven-labs/cqrs-pattern-c1d6f8517314)
