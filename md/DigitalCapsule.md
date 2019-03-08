@@ -44,7 +44,7 @@ Once those images are loaded, this RPI starts to server as a node in P2P network
 - Append encrypted data chunk to the header. Now the header and payload combined together as a digital capsule
 - Put the digital capsule to IPFS, get the hash address. Broadcast the digital capsule hash.
 
-## Transporation of digital capsule
+## Transpotation of digital capsule
 The digital capsule itself is stored on IPFS which is an open storage. Because the data is encrtypted with the AES key, there is no need to protect the digital capsule itself, but to protect the AES key.
 
 the AES key is stored in the original RPI and encrypted by that RPI's TPM. Actually even the encrypted AES key leaked, no one can decrypted without the TPM's RSA key.
@@ -55,11 +55,12 @@ With such protection, the digital capsule can be safely stored transferred in pu
 
 When the digital capsule is loaded into an executor's machine. The executor will read the header first. Validate the required envrionment is provided (such as docker images, network etc). 
 
-Then the wrapper code will be executed first. The wrapper code will get the executor's public key from the running envrionment variables. Then it will call blockchain's smart contract. The calling parameters including
+Then the wrapper code will be executed first. The wrapper code will get the executor's public key from the running envrionment variables. It also generate a temporary keypair used to this execution session. After that it will call blockchain's smart contract. The calling parameters including
 - digital capsule ID
 - owner ID
 - execution public ID
 - smart contract ID
+- Public key of the keypair generated at runtime (This key pair will be used to commucate with it's owner, so that the docker engine, host, even the RPI won't know the secrete)
 
 All of the above information could be faked, however, it any of them is faked, there is no way for the executor to get the AES key, since the owner's RPI will send the AES key encrypted using executor's public key. If a hacker use other good node's public key, the answer will be sent to that good node and decrypted by the good node only.
 
