@@ -15,8 +15,59 @@ Need to confirm with linux core developer (Sat Mar 16 meeting)
 
 ## Modules List
 
-![ModulesList](/imgs/modulesInRpi.svg)
+![ModulesList](imgs/modulesInRpi.svg)
 
+### Rasbian OS
+At the PoC stage, we can use existing Rasbian OS to save some time. In the future, we should modify the OS, remove any libs we do not need to minimize the attack surface.
+
+### Zymbit SDK
+Install from Zymbit
+
+### Docker Engine
+Install from Docker for Raspberry Pi
+
+### Main Services
+This is the only services loaded from outside of docker. It runs direclty from the RPi instead of Docker container becuase it will directly intereact with Zymbit SDK. It is also the communication hub between each Docker containers.
+
+#### True Random Number Generator
+It just call the Zymbit TPM's TRNG to get the random number. 
+we just assume that Zymbit TPM can provie a true random number in our PoC stage.
+
+#### Docker Image Verifier and Loader Service
+Other services are all running inside Docker Container. We need a loader to load them into docker after verify the hash. We do not want to load any compromised docker image. 
+The this service will compare the hash against the hash value stored in blockchain. Do not load if not matching.
+Because it load into Docker, so it has to be running outside of docker container.
+
+#### TPM Encryption/ Signature service
+It just call TPM's API. 
+
+### Elastos Carrier
+A modified version of Elastos Carrier. Additional logic when handshake with a new nodes. We will need 
+- Proof of Trust from the new nodes. 
+- Existing nodes need to check its historical data stored in blockchain (layer 1)
+- Signature fits its public key (stored in blockchain)
+
+The logic of determine connect or not is inside the "Remote Attestation" module. 
+
+### Eth Interface
+We put reward/panelty logic in smart contract of Eth sidechain.
+This is the Web3 interface to the Eth side chain.
+
+### Remote Attestation
+
+The main consensus module. More detail in separated document
+
+### Digital Capsule loader
+
+### PoET test
+
+### Lambda Test
+
+### Agent Manager
+
+### Cache Database
+
+### Customer Digital Capsule Execution Environment
 
 ## Details Tasks List, Phase I goal
 
